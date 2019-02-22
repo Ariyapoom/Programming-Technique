@@ -24,7 +24,7 @@ public class Monster {
             monsterName = "Green Slime Lv.1";
             maxHp = 30;
             hpMonster = maxHp;
-            expMonster = 560;
+            expMonster = 10;
             monsterDmg = 10;
             itemMonster = "Potion";
             dropRate = 80;
@@ -64,6 +64,15 @@ public class Monster {
             monsterDmg = 80;
             itemMonster = "Restoration";
             dropRate = 40;
+        }
+        if(idMonster == 6){
+            monsterName = "LV Upper For Class 2";
+            maxHp = 10;
+            hpMonster = maxHp;
+            expMonster = 450;
+            monsterDmg = 10;
+            itemMonster = "Restoration";
+            dropRate = 0;
         }
     }
     public String getNameMonster(){

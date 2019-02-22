@@ -43,6 +43,7 @@ public class NoName {
                 System.out.println("3. Red Slime lv.10");
                 System.out.println("4. Rainbow Slime lv.15");
                 System.out.println("5. King Blossom lv.20");
+                System.out.println("6. LV Upper For Class 2");
                 System.out.println("========================");
                 int monsterChoose = scanner.nextInt();
                 monster.selectmonster(monsterChoose);
@@ -141,7 +142,7 @@ public class NoName {
                         System.out.println("2. Magician");
                         int selectclass = scanner.nextInt();
                         if(selectclass == 1){
-                            novice = new Swrodman(novice);
+                            novice = new Swordman(novice);
                         }
                         if(selectclass == 2){
                             novice = new Magician(novice);    

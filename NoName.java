@@ -7,7 +7,8 @@ public class NoName {
         Random rand = new Random();
         System.out.print("Insert Name:");
         String name = scanner.nextLine();
-        Novice novice = new Novice(name);
+        Player novice;
+        novice = new Novice(name);
         Monster monster = new Monster();
 
         while (true) {
@@ -68,14 +69,11 @@ public class NoName {
                         System.out.println("========================");
                         System.out.println("Skill");
                         System.out.println("========================");
-                        System.out.println("1.Bash MP 20 DMG*2");
-                        System.out.println("2.Heal MP 10 HP+20");
+                        novice.showSkillList();
                         System.out.println("========================");
                         int skillDmg = novice.useSkill(scanner.nextInt());
-                        if(selectAttack != 0){
-                            System.out.println("You Attack Monster " + skillDmg + " Dmg");
-                            monster.dmgToMonster(skillDmg);
-                        }
+                        System.out.println("You Attack Monster " + skillDmg + " Dmg");
+                        monster.dmgToMonster(skillDmg);
                     } 
                     else if (selectAttack == 3) {
                         System.out.println("========================");
@@ -118,7 +116,7 @@ public class NoName {
                     System.out.println("Monster Defeated");
                     novice.expgain(monster.getExpMonster());
                     System.out.println("+EXP : "+monster.getExpMonster());
-                    novice.lvlup(novice.getexp(), novice.getlvl()); 
+                    novice.lvlup(); 
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
@@ -134,7 +132,21 @@ public class NoName {
                         e.printStackTrace();
                     }
                     }
-                    
+                    if(novice.getlvl() >= 10 && novice.getJobClass().equals("Novice")){
+                        System.out.println("Class Up");
+                        System.out.println("========================");
+                        System.out.println("Choose Your Class 1");
+                        System.out.println("========================");
+                        System.out.println("1. Swordman");
+                        System.out.println("2. Magician");
+                        int selectclass = scanner.nextInt();
+                        if(selectclass == 1){
+                            novice = new Swrodman(novice);
+                        }
+                        if(selectclass == 2){
+                            novice = new Magician(novice);    
+                        }
+                    }
                 }
             }
         }

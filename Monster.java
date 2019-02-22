@@ -24,7 +24,7 @@ public class Monster {
             monsterName = "Green Slime Lv.1";
             maxHp = 30;
             hpMonster = maxHp;
-            expMonster = 10;
+            expMonster = 560;
             monsterDmg = 10;
             itemMonster = "Potion";
             dropRate = 80;

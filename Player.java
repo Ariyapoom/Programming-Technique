@@ -127,11 +127,18 @@ public class Player {
         System.out.println("+++++++Resurrection+++++++");
     }
 
-    public void usepotion(int index){
+    public void usePotionForHp(int index){
         dmgToHp(bag.getHpFromPotion(index));
-        useMp(bag.getMpFromPotion(index));
+        System.out.println("Use "+bag.getItem(index)+" +HP " + bag.getMpFromPotion(index));
         bag.usePotion(index);
     }
+
+    public void usePotionForMp(int index){
+        useMp(bag.getMpFromPotion(index));
+        System.out.println("Use "+bag.getItem(index)+" +MP " + bag.getMpFromPotion(index));
+        bag.usePotion(index);
+    }
+
     public void showSkillList(){
         int i=0;
         for (String skill : skillList) {

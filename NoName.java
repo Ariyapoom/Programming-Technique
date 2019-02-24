@@ -31,7 +31,19 @@ public class NoName {
                 System.out.println("========================");
                 int selectItem = scanner.nextInt();
                 if (selectItem > 0 && selectItem <= novice.bag.getCountBag()) {
-                    novice.usepotion(selectItem);
+                    System.out.println("========================");
+                    System.out.println("Use For");
+                    System.out.println("========================");
+                    System.out.println("1. HP + " + novice.bag.getHpFromPotion(selectItem));
+                    System.out.println("2. MP + " + novice.bag.getHpFromPotion(selectItem));
+                    System.out.println("========================");
+                    int selectType = scanner.nextInt();
+                    if(selectType == 1){
+                        novice.usePotionForHp(selectItem);
+                    }
+                    else if(selectType == 2){
+                        novice.usePotionForMp(selectItem);
+                    }
                 }
             } 
             else if(choose == 1){
@@ -59,7 +71,7 @@ public class NoName {
                     System.out.println("1.Attack DMG "+novice.getDmg());
                     System.out.println("2.Skill Attack");
                     System.out.println("3.Bag");
-                    System.out.println("3.Run");
+                    System.out.println("4.Run");
                     System.out.println("========================");
                     int selectAttack = scanner.nextInt();
                     if (selectAttack == 1) {
@@ -85,7 +97,19 @@ public class NoName {
                         System.out.println("========================");
                         int selectItem = scanner.nextInt();
                         if (selectItem > 0 && selectItem <= novice.bag.getCountBag()) {
-                            novice.usepotion(selectItem);
+                            System.out.println("========================");
+                            System.out.println("Use For");
+                            System.out.println("========================");
+                            System.out.println("1. HP + " + novice.bag.getHpFromPotion(selectItem));
+                            System.out.println("2. MP + " + novice.bag.getHpFromPotion(selectItem));
+                            System.out.println("========================");
+                            int selectType = scanner.nextInt();
+                            if(selectType == 1){
+                                novice.usePotionForHp(selectItem);
+                            }
+                            else if(selectType == 2){
+                                novice.usePotionForMp(selectItem);
+                            }
                         }
                     }
                     else {

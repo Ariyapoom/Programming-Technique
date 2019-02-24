@@ -8,13 +8,13 @@ public class Bag {
     public Bag(){
         items = new ArrayList<Item>();
         bagSize = 10;
-        items.add(new Item("Potion",3));
+        items.add(new Potion(3));
     }
 
     public void showitem(){
         int i = 1;
         for(Item item : items){
-            System.out.println(i +". "+ item.getItemNameAndValue()+" x"+item.getAmount());
+            System.out.println(i +". "+item.getItemName()+" "+ item.getItemProperty()+" x"+item.getAmount());
             i++;
         }
     }
@@ -39,7 +39,21 @@ public class Bag {
                 }
             }
         }
-        else items.add(new Item(nameItem,amount));
+        else if(nameItem.equals("Potion")){
+            items.add(new Potion(amount));
+        }
+        else if(nameItem.equals("Super Potion")){
+            items.add(new Superpotion(amount));
+        }
+        else if(nameItem.equals("Hyper Potion")){
+            items.add(new Hyperpotion(amount));
+        }
+        else if(nameItem.equals("Max Potion")){
+            items.add(new Maxpotion(amount));
+        }
+        else if(nameItem.equals("Restoration")){
+            items.add(new Restoration(amount));
+        }
     }
     private boolean isItHave(String nameItem){
         for (Item item : items) {

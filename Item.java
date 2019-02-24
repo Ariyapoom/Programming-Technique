@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Item {
     private String itemName;
+    private String itemProperty;
     private int itemAmount;
     private int healAmount;
     private int mpAmount;
@@ -11,34 +12,19 @@ public class Item {
     public Item(String name,int number){
         itemName  = name;
         itemAmount = number;
-        if(name.equals("Potion")){
-            healAmount = 25;
-            mpAmount = 10;
-        }
-        else if(name.equals("Super Potion")){
-            healAmount = 50;
-            mpAmount = 20;
-        }
-        else if(name.equals("Hyper Potion")){
-            healAmount = 75;
-            mpAmount =30;
-        }
-        else if(name.equals("Max Potion")){
-            healAmount = 100;
-            mpAmount = 40;
-        }
-        else if(name.equals("Restoration")){
-            healAmount = 9999;
-            mpAmount = 9999;
-        }
+        itemProperty = "";
+    }
+    public void setValue(int valueForHp,int valueForMp){
+        healAmount = valueForHp;
+        mpAmount = valueForMp;
     }
 
     public String getItemName(){
         return itemName;
     }
 
-    public String getItemNameAndValue(){
-        return itemName + " HP+" + healAmount + "MP+" + mpAmount;
+    public String getItemProperty(){
+        return itemProperty;
     }
 
     public int getAmount(){
@@ -55,6 +41,14 @@ public class Item {
 
     public int getMpAmount(){
         return mpAmount;
+    }
+
+    public void setProperty(String property){
+        itemProperty = property;
+    }
+
+    public void printProperty(){
+        System.out.println(itemProperty);
     }
 
 }

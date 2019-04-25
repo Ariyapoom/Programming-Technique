@@ -2,41 +2,34 @@ import java.io.*;
 import java.util.*;
 
 public class Player {
-    private int hp;
-    private int mp;
-    private int exp;
-    private int level;
-    private int maxHp;
-    private int maxMp;
-    private int myDmg;
+    protected int hp;
+    protected int mp;
+    protected int exp;
+    protected int level;
+    protected int maxHp;
+    protected int maxMp;
+    protected int myDmg;
+    protected int killcount;
     private String name;
     private String jobClass;
-    public Bag bag ;
-    ArrayList<String> skillList;
+    protected ArrayList<Skill> skills;
+    public Bag myBag;
+    protected String playerPic;
 
-    public Player(String newName) {
+    public Player(String newName,String job) {
         this.name = newName;
-        jobClass = "Novice";
+        jobClass = job;
         level = 1;
-        maxHp = 50;
-        maxMp = 30;
+        maxHp = 0;
+        maxMp = 0;
         hp = maxHp;
         mp = maxMp;
         exp = 0;
-        myDmg = 10;
-        bag = new Bag();
-        skillList = new ArrayList<String>();
-    }
-
-    public void setClass(String newClass,int newHp,int newMp,int newLv,int newDmg,Bag newbag){
-        jobClass = newClass;
-        maxHp = newHp;
-        maxMp = newMp;
-        level = newLv;
-        myDmg = newDmg;
-        bag = newbag;
-        hp = maxHp;
-        mp = maxMp;
+        myDmg = 0;
+        killcount = 0;
+        skills = new ArrayList<Skill>();
+        myBag =new Bag();
+        playerPic ="";
     }
     
     public String getName(){
@@ -73,31 +66,37 @@ public class Player {
     public int getDmg(){
         return myDmg;
     }
-    public void showAllStatus(){
-        System.out.println("Name: " + name);
-        System.out.println("Class: " + jobClass);
-        System.out.println("Level: " + level);
-        System.out.println("HP: " + hp + "/" + maxHp);
-        System.out.println("MP: " + mp + "/" + maxMp);
-        System.out.println("EXP: " + exp + "/" + level*10);
-    }
 
+    public int getKillCount(){
+        return killcount;
+    }
+    
     public void expgain(int expIncome) {
         exp = exp + expIncome;
+        killcount++;
+        lvlup();
     }
 
     public void dmgToHp(int dmg) {
-        hp = hp + dmg;
+        hp = hp - dmg;
+        if(hp < 0){
+            hp = 0;
+        }
+    }
+
+    public void usePotion(Item p){
+        hp += p.getForHp();
+        mp += p.getForMp();
         if(hp > maxHp){
             hp = maxHp;
+        }
+        if(mp > maxMp){
+            mp = maxMp;
         }
     }
 
     public void useMp(int used){
-        mp += used;
-        if(mp>maxMp){
-            mp = maxMp;
-        }
+        mp -= used;
     }
 
     public void lvlup() {
@@ -113,41 +112,27 @@ public class Player {
         }
     }
     
-    public void resurrection() {
+    public boolean isPlayerDie(){
+        if(hp == 0){
+            return true;
+        }
+        return false;
+    }
+
+    public void resurrection(){
         hp = maxHp / 2;
         mp = maxMp / 2;
-        System.out.println("You Lose!!!");
-        System.out.println("Waiting For Resurrection....");
-        try {
-            Thread.sleep(5000);
-        } 
-        catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println("+++++++Resurrection+++++++");
+    }
+    
+    public int getnumberskill(){
+        return skills.size();
     }
 
-    public void usePotionForHp(int index){
-        dmgToHp(bag.getHpFromPotion(index));
-        System.out.println("Use "+bag.getItem(index)+" +HP " + bag.getMpFromPotion(index));
-        bag.usePotion(index);
+    public Skill getSkill(int index){
+        return skills.get(index);
     }
 
-    public void usePotionForMp(int index){
-        useMp(bag.getMpFromPotion(index));
-        System.out.println("Use "+bag.getItem(index)+" +MP " + bag.getMpFromPotion(index));
-        bag.usePotion(index);
-    }
-
-    public void showSkillList(){
-        int i=0;
-        for (String skill : skillList) {
-            System.out.println((i+1)+". "+skill);
-            i++;
-        }
-    }
-    public int useSkill(int select){
-        int skillDmg = 0;
-        return skillDmg;
+    public String getPic(){
+        return playerPic;
     }
 }

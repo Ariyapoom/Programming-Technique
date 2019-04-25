@@ -1,102 +1,75 @@
-import java.io.*;
-import java.util.*;
-
-
 public class Monster {
-    private String monsterName;
-    private int hpMonster;
-    private int maxHp;
-    private int expMonster;
-    private int monsterDmg;
-    private String itemMonster;
-    private int dropRate;
-    public Monster(){
-        monsterName = "";
+    protected int hp;
+    protected int maxHp;
+    protected int exp;
+    protected int dmg;
+    protected int level;
+    protected int dropRate;
+    protected Item itemDrop;
+    protected String pic;
+    private String name;
+    
+    public Monster(String newName){
+        name = newName;
         maxHp = 0;
-        hpMonster = maxHp;
-        expMonster = 0;
-        monsterDmg = 0;
-        itemMonster = "";
+        hp = maxHp;
+        exp = 0;
+        level = 0;
+        dmg = 0;
         dropRate = 0;
+        pic ="";
     }
-    public void selectmonster(int idMonster){
-        if(idMonster == 1){
-            monsterName = "Green Slime Lv.1";
-            maxHp = 30;
-            hpMonster = maxHp;
-            expMonster = 10;
-            monsterDmg = 10;
-            itemMonster = "Potion";
-            dropRate = 80;
-        }
-        if(idMonster == 2){
-            monsterName = "Blue Slime Lv.5";
-            maxHp = 60;
-            hpMonster = maxHp;
-            expMonster = 20;
-            monsterDmg = 20;
-            itemMonster = "Super Potion";
-            dropRate = 70;
-        }
-        if(idMonster == 3){
-            monsterName = "Red Slime lv.10";
-            maxHp = 150;
-            hpMonster = maxHp;
-            expMonster = 50;
-            monsterDmg = 40;
-            itemMonster = "Hyper Potion";
-            dropRate = 60;
-        }
-        if(idMonster == 4){
-            monsterName = "Rainbow Slime lv.15";
-            maxHp = 225;
-            hpMonster = maxHp;
-            expMonster = 75;
-            monsterDmg = 60;
-            itemMonster = "Max Potion";
-            dropRate = 50;
-        }
-        if(idMonster == 5){
-            monsterName = "King Blossom lv.20";
-            maxHp = 300;
-            hpMonster = maxHp;
-            expMonster = 100;
-            monsterDmg = 80;
-            itemMonster = "Restoration";
-            dropRate = 40;
-        }
-        if(idMonster == 6){
-            monsterName = "LV Upper For Class 2";
-            maxHp = 10;
-            hpMonster = maxHp;
-            expMonster = 450;
-            monsterDmg = 10;
-            itemMonster = "Restoration";
-            dropRate = 0;
-        }
+    
+    public String getPic(){
+        return pic;
     }
-    public String getNameMonster(){
-        return monsterName;
+
+    public String getName(){
+        return name;
     }
-    public int getHpMonster(){
-        return hpMonster;
+
+    public int getlvl(){
+        return level;
     }
+
+    public int getHp(){
+        return hp;
+    }
+
     public int getMaxHp(){
-        return maxHp;
+        return  maxHp;
     }
-    public int getExpMonster(){
-        return expMonster;
+
+    public int getDmg(){
+        return dmg;
     }
-    public int getDmgMonster(){
-        return monsterDmg;
+
+    public int getExp(){
+        return exp;
     }
-    public String getItem(){
-        return itemMonster;
+
+    public void takingDmg(int commingDmg){
+        hp -= commingDmg;
+        if(hp < 0){
+            hp = 0;
+        }
     }
-    public void dmgToMonster(int dmg){
-        hpMonster = hpMonster-dmg;
+
+    public String toString() {
+        return "Name :" + name + "  Level :" + level + "  HP :" + maxHp + "/" + hp;
     }
-    public int getDropRate(){
-        return dropRate;
+
+    public boolean isDie(){
+        if(hp == 0){
+            return true;
+        }
+        return false;
+    }
+
+    public Item DropItem(){
+        if(Math.random()*100+1 < dropRate){
+            return itemDrop;
+        }
+        return null;
     }
 }

@@ -1,9 +1,22 @@
+/**
+ * Potion
+ */
 public class Potion extends Item{
 
-    public Potion(int amount){
-        super("Potion",amount);
-        setValue(25,20);
-        setProperty("Use for +HP 25 or +MP 20");
+    protected int forHP;
+    protected int forMp;
+
+    public Potion(){
+        super("Potion");
+        forHP = 25;
+        forMp = 20;
     }
     
+    public int getForHp(){
+        return forHP;
+    }
+
+    public int getForMp(){
+        return forMp;
+    }
 }
